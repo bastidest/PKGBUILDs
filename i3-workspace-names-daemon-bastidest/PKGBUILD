@@ -1,0 +1,29 @@
+# Maintainer: bastidest <bastidest at mailbox dot org>
+_name=i3-workspace-names-daemon
+pkgname=$_name-bastidest
+pkgver=r93.0b993eb
+pkgrel=1
+pkgdesc="Dynamically update the name of i3wm workspaces"
+arch=('any')
+url="https://github.com/bastidest/i3-workspace-names-daemon"
+license=('MIT')
+depends=('python-i3ipc' 'i3-wm')
+makedepends=('python-setuptools' 'git')
+conflicts=($_name)
+source=("$_name::git+$url#branch=feature/dynamic-titles")
+md5sums=('SKIP')
+
+pkgver() {
+    cd "$_name"
+    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+    cd "${srcdir}/${_name}"
+    python setup.py build
+}
+
+package() {
+    cd "${srcdir}/${_name}"
+    python setup.py install --root="$pkgdir" --optimize=1 --skip-build
+}
