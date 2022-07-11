@@ -3,7 +3,7 @@
 _pkgname=git-conventional-commits
 
 pkgname=nodejs-$_pkgname
-pkgver=1.2.2
+pkgver=1.2.3
 pkgrel=1
 pkgdesc="Git Conventional Commits Util to generate Semantic Version and Markdown Change Log and Validate Commit Messages"
 arch=('any')
@@ -14,7 +14,7 @@ depends=('nodejs' 'git')
 makedepends=('npm' 'jq')
 source=("https://registry.npmjs.org/$_pkgname/-/$_pkgname-$pkgver.tgz")
 noextract=("$_pkgname-$pkgver.tgz")
-sha256sums=('d1035312433e13579f2e00f19127983a64e5873aa41d4dd09b0aca41e71cac65')
+sha256sums=('7f496b32d500979bfad024dfbfc73c03818c186de580acb951986897a3a32123')
 
 package() {
   npm install -g --prefix "$pkgdir/usr" "$srcdir/$_pkgname-$pkgver.tgz"
